@@ -1,19 +1,28 @@
-const { Client, MessageEmbed } = require('discord.js');
-const { prefix, token, giphyToken, presenceGame, presenceType } = require('./config.json');
-
+const { Client, MessageEmbed, Collection } = require('discord.js');
+const { prefix, token, giphyToken, activityName, presenceType, helpRoleColor, botStatus } = require('./config.json');
 const client = new Client({
     disableEveryone: false
 });
+const fs = require('fs');
+client.commands = new Collection();
+
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+
+    client.commands.set(command.name, command);
+}
 
 client.on('ready', () => {
-    console.log(`I'm online now! My name is ${client.user.username}`);
+    console.log(`${client.user.username} is ready!`);
 
     client.user.setPresence({
-        game: {
-            name: presenceGame,
+        activity: {
+            name: activityName,
             type: presenceType
-        }
-    })
+        },
+        status: botStatus
+    }).then(console.log).catch(console.error);
 });
 
 client.on('message', async message => {
@@ -25,38 +34,19 @@ client.on('message', async message => {
     const cmd = args.shift().toLowerCase();
 
     if (cmd === "ping") {
-        const msg = await message.channel.send(`🏓 Pinging...`);
-        msg.edit(`🏓 Pong\nLatency is ${Math.floor(msg.createdAt - message.createdAt)}\nAPI Latency is ${Math.round(client.ws.ping)}ms`)
+        client.commands.get('ping').execute(client, message);
     }
 
     if (cmd === "embed") {
-        if (message.deletable) message.delete();
-
-        if (args.length < 1)
-            return message.reply("Nothing to say?").then(m => m.delete(5000));
-        
-        const roleColor = message.guild.me.displayHexColor === "#000000" ? "#FFFFFF" : message.guild.me.displayHexColor;
-
-        const embed = new MessageEmbed()
-            .setColor(roleColor)
-            .setAuthor(message.author.username, message.author.displayAvatarURL())
-            .setDescription(args.join(" "))
-            .setFooter(client.user.username + "\nI'm still under development ;D", client.user.displayAvatarURL())
-            .setTimestamp();
-
-        message.channel.send(embed);
+        client.commands.get('embed').execute(client, MessageEmbed, message, args);
     }
 
     if (cmd === "say") {
-        if (message.member.hasPermission(['ADMINISTRATOR'])) {
-            if (message.deletable) {
-                message.delete();
-                message.channel.send(`${args.join(" ")}`);   
-            }
-        } else {
-            message.channel.send(`${message.author.username} said: ${args.join(" ")}`);
-        }
-            
+        client.commands.get('say').execute(message, args);    
+    }
+
+    if (cmd === "help") {
+        client.commands.get('help').execute(MessageEmbed, message, helpRoleColor);
     }
 });
 

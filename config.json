@@ -2,6 +2,8 @@
     "prefix": "$",
     "token": "NzA0NjA5MDY2NjAwNjI4MzA0.Xq_iHA.gR-saZJfrruN6pBfCnSbJ_B_mqw",
     "giphyToken": "",
-    "presenceGame": "me being developed :D",
-    "presenceType": "WATCHING"
+    "activityName": "Raahim develop me :D",
+    "presenceType": "WATCHING",
+    "botStatus": "idle",
+    "helpRoleColor": "0xEEEEEE"
 }
