@@ -16,6 +16,7 @@ for (const file of commandFiles) {
 client.on('ready', () => {
     console.log(`${client.user.username} is ready!`);
 
+    // client.user.setStatus(botStatus);
     client.user.setPresence({
         activity: {
             name: activityName,
