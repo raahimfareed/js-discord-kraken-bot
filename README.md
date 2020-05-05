@@ -13,13 +13,9 @@ I don't think I'll ever complete this, as I'm using this to learn JS and Discord
 All commands must begin with _$_
 
 `help` - Displays Help Section
-> $help
 
 `ping` - Pings Latency
-> $ping
 
 `embed (message)` - Embeds a message
-> $embed Hello World!
 
 `say (message)` - Makes the bot say something
-> $say I am a discord bot
