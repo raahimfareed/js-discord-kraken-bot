@@ -18,6 +18,8 @@ module.exports = {
                 message.channel.send(errMsg);
             }
         } else {
+            // if (message.deletable)
+            //     message.delete();
             let translateText = new MessageEmbed()
                 .setAuthor(message.author.username, message.author.displayAvatarURL())
                 .setColor(0x7c5295);

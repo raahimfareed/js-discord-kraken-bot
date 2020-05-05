@@ -1,3 +1,4 @@
+// Constants
 const { Client, MessageEmbed, Collection } = require('discord.js');
 const { prefix, token, giphyToken, activityName, presenceType, helpRoleColor, botStatus } = require('./config.json');
 const translate = require('@vitalets/google-translate-api');
@@ -5,9 +6,10 @@ const client = new Client({
     disableEveryone: false
 });
 const fs = require('fs');
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+
 client.commands = new Collection();
 
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
 
@@ -17,7 +19,6 @@ for (const file of commandFiles) {
 client.on('ready', () => {
     console.log(`${client.user.username} is ready!`);
 
-    // client.user.setStatus(botStatus);
     client.user.setPresence({
         activity: {
             name: activityName,
