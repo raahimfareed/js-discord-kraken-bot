@@ -4,7 +4,7 @@ module.exports = {
     execute(client, MessageEmbed, message, args) {
         if (message.deletable) message.delete();
 
-        if (args.length == 0)
+        if (args.length < 1)
             return message.reply("Nothing to say?").then(m => m.delete({ timeout: 5000 }));
         
         const roleColor = message.guild.me.displayHexColor === "#000000" ? "#FFFFFF" : message.guild.me.displayHexColor;
