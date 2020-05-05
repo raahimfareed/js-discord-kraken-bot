@@ -10,8 +10,12 @@ I don't think I'll ever complete this, as I'm using this to learn JS and Discord
 
 ### Commands Available
 
-All commands must begin with _$_\n
-`help` - Displays Help Section\n
-`ping` - Pings Latency\n
-`embed (message)` - Embeds a message\n
-`say (message)` - Makes the bot say something\n
+All commands must begin with _$_
+
+`help` - Displays Help Section
+
+`ping` - Pings Latency
+
+`embed (message)` - Embeds a message
+
+`say (message)` - Makes the bot say something
