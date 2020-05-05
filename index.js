@@ -1,5 +1,6 @@
 const { Client, MessageEmbed, Collection } = require('discord.js');
 const { prefix, token, giphyToken, activityName, presenceType, helpRoleColor, botStatus } = require('./config.json');
+const translate = require('@vitalets/google-translate-api');
 const client = new Client({
     disableEveryone: false
 });
@@ -46,9 +47,13 @@ client.on('message', async message => {
         client.commands.get('say').execute(message, args);    
     }
 
+    if (cmd === "translate") {
+        client.commands.get('translate').execute(MessageEmbed, message, helpRoleColor, args, translate);
+    }
+
     if (cmd === "help") {
         client.commands.get('help').execute(MessageEmbed, message, helpRoleColor);
     }
 });
 
-client.login(token);    
+client.login(token);
