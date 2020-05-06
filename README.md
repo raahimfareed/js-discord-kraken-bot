@@ -19,3 +19,11 @@ All commands must begin with _$_
 `embed (message)` - Embeds a message
 
 `say (message)` - Makes the bot say something
+
+`translate` - Sends a translate help message to user
+
+###### `translate [lang code] (message)` - Translates English into any other languages, all langauges supported
+
+`ban [user]` - Bans a user
+
+`kick [user]` - Kicks a user
