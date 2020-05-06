@@ -20,6 +20,10 @@ All commands must begin with _$_
 
 `say (message)` - Makes the bot say something
 
+`meme` - Sends a juicy meme
+
+`dance` - Sends default dance
+
 `translate` - Sends a translate help message to user
 
 ###### `translate [lang code] (message)` - Translates English into any other languages, all langauges supported

@@ -18,6 +18,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+
 client.on('ready', () => {
     console.log(`${client.user.username} is ready!`);
 
@@ -38,8 +39,8 @@ client.on('message', async message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
 
-    // User Available Commands
     switch (cmd) {
+        // User Available Commands
         case 'ping':
             client.commands.get('ping').execute(client, message);
             break;
@@ -52,14 +53,27 @@ client.on('message', async message => {
         case 'translate':
             client.commands.get('translate').execute(MessageEmbed, message, helpRoleColor, args, translate);
             break;
+        case 'meme':
+            client.commands.get('meme').execute(message, MessageEmbed);
+            break;
+        case 'dance':
+            client.commands.get('dance').execute(message);
+            break;
         case 'help':
             client.commands.get('help').execute(MessageEmbed, message, helpRoleColor);
             break;
+
+        // Admin Commands
         case 'kick':
             client.commands.get('kick').execute(message, giphy, args);
             break;
         case 'ban':
             client.commands.get('ban').execute(message, giphy, args);
+            break;
+
+        // NSFW Commands
+        case 'porn':
+            client.commands.get('porn').execute(message, MessageEmbed);
             break;
         default:
             break;
