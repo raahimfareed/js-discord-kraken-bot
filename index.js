@@ -19,6 +19,7 @@ for (const file of commandFiles) {
 }
 
 
+
 client.on('ready', () => {
     console.log(`${client.user.username} is ready!`);
 
@@ -50,18 +51,22 @@ client.on('message', async message => {
         case 'embed':
             client.commands.get('embed').execute(client, MessageEmbed, message, args); 
             break;
-        case 'translate':
-            client.commands.get('translate').execute(MessageEmbed, message, helpRoleColor, args, translate);
-            break;
         case 'meme':
             client.commands.get('meme').execute(message, MessageEmbed);
             break;
         case 'dance':
             client.commands.get('dance').execute(message);
             break;
+        case 'translate':
+            client.commands.get('translate').execute(MessageEmbed, message, helpRoleColor, args, translate);
+            break;
+        case 'music':
+            client.commands.get('music').execute(MessageEmbed, message, helpRoleColor, args);
+            break;
         case 'help':
             client.commands.get('help').execute(MessageEmbed, message, helpRoleColor);
             break;
+        
 
         // Admin Commands
         case 'kick':
@@ -69,11 +74,6 @@ client.on('message', async message => {
             break;
         case 'ban':
             client.commands.get('ban').execute(message, giphy, args);
-            break;
-
-        // NSFW Commands
-        case 'porn':
-            client.commands.get('porn').execute(message, MessageEmbed);
             break;
         default:
             break;
