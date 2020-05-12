@@ -36,7 +36,7 @@ client.on('ready', () => {
 client.on('message', async message => {
     if (message.author.bot) return;
     if (!message.guild) return;
-    if (!message.content.startsWith(prefix));
+    if (!message.content.startsWith(prefix)) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
@@ -70,6 +70,9 @@ client.on('message', async message => {
         
 
         // Admin Commands
+        case 'warn':
+            client.commands.get('warn').execute(message, args);
+            break;
         case 'kick':
             client.commands.get('kick').execute(message, giphy, args);
             break;
@@ -77,6 +80,7 @@ client.on('message', async message => {
             client.commands.get('ban').execute(message, giphy, args);
             break;
         default:
+            message.channel.send("Did you say something?");
             break;
     }
 });

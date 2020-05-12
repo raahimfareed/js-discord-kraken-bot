@@ -31,3 +31,5 @@ All commands must begin with _$_
 `ban [user]` - Bans a user
 
 `kick [user]` - Kicks a user
+
+`warn [user]` - Warns a user
