@@ -26,7 +26,7 @@ All commands must begin with _$_
 
 `translate` - Sends a translate help message to user
 
-###### `translate [lang code] (message)` - Translates English into any other languages, all langauges supported
+###### `translate [lang code] (message)` - Translates English into any other languages, all languages supported
 
 `ban [user]` - Bans a user
 

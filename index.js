@@ -4,10 +4,11 @@ const { prefix, token, giphyToken, activityName, presenceType, helpRoleColor, bo
 const translate = require('@vitalets/google-translate-api');
 const GphApiClient = require('giphy-js-sdk-core');
 const client = new Client({
-    disableEveryone: false
+    disableEveryone: true
 });
 const fs = require('fs');
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+const queue = new Map();
 
 client.commands = new Collection();
 giphy = GphApiClient(giphyToken);
@@ -18,7 +19,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-
+let servers = {};
 
 client.on('ready', () => {
     console.log(`${client.user.username} is ready!`);
@@ -60,9 +61,9 @@ client.on('message', async message => {
         case 'translate':
             client.commands.get('translate').execute(MessageEmbed, message, helpRoleColor, args, translate);
             break;
-        case 'music':
-            client.commands.get('music').execute(MessageEmbed, message, helpRoleColor, args);
-            break;
+        // case 'music':
+        //     client.commands.get('music').execute(message, args, queue);
+        //     break;
         case 'help':
             client.commands.get('help').execute(MessageEmbed, message, helpRoleColor);
             break;
